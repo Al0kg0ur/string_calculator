@@ -9,4 +9,12 @@ class StringCalcTest < ActiveSupport::TestCase
     assert_equal 0, @calculator.add("")
   end
 
+  test "single number should return the number" do
+    assert_equal 1, @calculator.add("1")
+  end
+
+  test "two numbers separated by comma should return sum" do
+    assert_equal 6, @calculator.add("1,5")
+  end
+
 end
