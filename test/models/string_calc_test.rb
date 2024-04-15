@@ -17,6 +17,14 @@ class StringCalcTest < ActiveSupport::TestCase
     assert_equal 6, @calculator.add("1,5")
   end
 
+  test "handle new lines between numbers" do
+    assert_equal 6, @calculator.add("1\n2,3")
+  end
+
+  test "change delimiter and calculate sum" do
+    assert_equal 3, @calculator.add("//;\n1;2")
+  end
+
   test "negative numbers should throw an exception" do
     assert_raises(RuntimeError) { @calculator.add("-1,2,-3") }
   end
