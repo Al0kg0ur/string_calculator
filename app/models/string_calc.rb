@@ -1,24 +1,28 @@
 class StringCalc < ApplicationRecord
   def add(numbers)
-    # Check if the numbers string is empty
     return 0 if numbers.empty?
 
-    # Initialise delimiter and numbers based on the input format
-    delimiter = numbers.match(/^\/\/(.)\n/) { |match| match[1] } || ","
+    delimiter = extract_delimiter(numbers)
+    numbers = extract_numbers(numbers, delimiter)
 
-    # Split numbers based on delimiter and new line characters
-    numbers_array = numbers.split(/#{delimiter}|\n/)
+    sum_numbers(numbers)
+  end
 
-    # Convert each part of the array to integer
-    integers = numbers_array.map(&:to_i)
+  private
+	# Uses regex to extract the delimiter specified in the numbers string
+  def extract_delimiter(numbers)
+    numbers.match(/^\/\/(.)\n/) { |match| match[1] } || ","
+  end
 
-    # Check for negative numbers
-    negative_numbers = integers.select { |num| num < 0 }
-    if negative_numbers.any?
-      raise "negative numbers not allowed #{negative_numbers.join(",")}"
-    end
+  def extract_numbers(numbers, delimiter)
+    numbers.gsub(/^\/\/.\n/, "").split(/#{Regexp.escape(delimiter)}|\n/).map(&:to_i)
+  end
 
-    # Calculate the sum of the numbers
-    integers.sum
+  def sum_numbers(numbers)
+  	# Check for negative numbers
+    negatives = numbers.select { |num| num < 0 }
+    raise "negative numbers not allowed #{negatives.join(',')}" if negatives.any?
+
+    numbers.sum
   end
 end
