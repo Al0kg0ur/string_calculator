@@ -1,8 +1,8 @@
 # README
 Instructions for Reviewing String Calculator Implementation
 
-Files to Review:
-1. Model File (string_calc.rb):
+**Files to Review:**
+1. **Model File (string_calc.rb):**
 	This file contains the implementation of the StringCalculator class with an add method.
 	The add method takes a string of comma-separated numbers, supports custom delimiters, and performs the addition operation.
 
@@ -13,10 +13,10 @@ Files to Review:
 		d. Detects and uses custom delimiters specified at the beginning of the input string (e.g., "//;\n1;2").
 		e. Throws an exception with a meaningful error message if negative numbers are present in the input.
 
-2. Test File (string_calc_test.rb):
+2. **Test File (string_calc_test.rb):**
 	This test file contains unit tests for the StringCalculator class to ensure correct behavior, especially with different delimiters.
 
-Key Features to Verify:
+**Key Features to Verify:**
 
 	1. Handling Delimiters:
 		a. Check that the extract_delimiter method correctly identifies custom delimiters.
@@ -26,8 +26,8 @@ Key Features to Verify:
 	3. Summation:
 		b. Confirm that the sum_numbers method calculates the correct sum of the numbers extracted from the input string.
 
-Input:
+**Input:**
 	calculator = StringCalc.new
  	result = calculator.add("1,2,3")
 
-Output: 6
+**Output:** 6
